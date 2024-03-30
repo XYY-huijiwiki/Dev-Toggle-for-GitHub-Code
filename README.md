@@ -20,17 +20,14 @@
 ## 新项目如何接入此脚本
 
 1. 在`src/main.ts`中的`devList`添加项目新项目的名称。
-2. 在新项目**所有**脚本运行前，检查`dev`的值，并决定启动开发版本还是正式版本。以[MediaWiki-Common.js](http://github.com/xyy-huijiwiki/MediaWiki-Common.js)为例：
+2. 在羊羊百科中的导入脚本中，通过判断`dev`的值来判断是否加载普通代码。
 
-   ```ts
-   // 假设使用Vite，全部为默认设置的情况下，在文件 src/main.ts 中
+   ```html
+   <!-- [[Html:迷你控制中心]] -->
 
-   if (import.meta.env.PROD && dev === "MediaWiki-Common.js") {
-     // 此处代码只在生产环境且发现`dev`值为`MediaWiki-Common.js`时执行
-     // 此时停止继续加载代码即可
-     throw new Error("检测到dev环境，停止加载prod代码");
-     // 虽然并不推荐throw new Error，但是这是最简单的方法
-   }
-
-   // 正常运行其他代码
+   <script>
+     typeof dev !== "undefined" && dev === "mini-dashboard" // 通过typeof避免dev未定义时报错
+       ? import("http://localhost:5173/src/main.ts") // 处于开发模式，加载开发代码（此为Vite默认情况下的网址）
+       : import("https://xyy-huijiwiki.github.io/mini-dashboard/entry.js"); // 处于普通模式，加载普通代码
+   </script>
    ```
