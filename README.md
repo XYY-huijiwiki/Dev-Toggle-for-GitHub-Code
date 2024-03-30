@@ -9,7 +9,7 @@
 ## 使用方法
 
 1. 安装浏览器插件[篡改猴](https://www.tampermonkey.net)。
-2. 安装篡改猴脚本：[githubCodeTesting.user.js](https://xyy-huijiwiki.github.io/dev-toggle-for-github-code/main.user.js)。
+2. 安装篡改猴脚本：[Dev-Toggle-for-GitHub-Code](https://xyy-huijiwiki.github.io/dev-toggle-for-github-code/main.user.js)。
 3. 在羊羊百科的页面上，打开篡改猴菜单，启用脚本（false 代表停止注入开发服务器，不同名称代表不同项目）。
 
 ![guide](guide.png)
