@@ -15,23 +15,23 @@
 ![guide](guide.png)
 
 > [!NOTE]
-> 结束测试后记得关闭脚本，否则默认js将无法加载。
+> 结束测试后记得关闭脚本，否则默认 js 将无法加载。
 
 ## 新项目如何接入此脚本
 
 1. 在`src/main.ts`中的`devList`添加项目新项目的名称。
 2. 脚本会加载`http://localhost:5173/src/main.ts`，新项目需要视情况调整开发服务器的 host 和 port。
-3. 在新项目启动前，通过全局变量`dev`判断是否停止加载代码，比如：
+3. 在羊羊百科中的导入脚本中，通过判断`dev`的值来判断是否加载普通代码。
 
-   ```ts
-   // src/main.ts
-   // 假设是Vite项目且全部为默认设置
-   // 假设项目名称为`newProject`
+   ```html
+   <!-- [[Html:迷你控制中心]] -->
 
-   if (import.meta.env.PROD && dev === "newProject") {
-     // 此处代码只在生产环境且发现`dev`值为`newProject`时执行
-     // 此时停止继续加载代码即可，剩下的交给篡改猴脚本
-     throw new Error("检测到dev环境，停止加载prod代码");
-     // 虽然并不推荐throw new Error，但是这是最简单的方法
-   }
+   <script>
+     if (!(typeof dev === "undefined" && dev === "mini-dashboard")) {
+       // 不处于开发模式，加载普通代码
+       import("https://xyy-huijiwiki.github.io/mini-dashboard/entry.js");
+     } else {
+       // 处于开发模式，什么都不做，由篡改猴脚本加载开发服务器
+     }
+   </script>
    ```
