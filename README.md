@@ -20,14 +20,15 @@
 ## 新项目如何接入此脚本
 
 1. 在`src/main.ts`中的`devList`添加项目新项目的名称。
-2. 在新项目**所有**脚本运行前，检查`dev`的值，并决定启动开发版本还是正式版本。以[MediaWiki-Common.js](http://github.com/xyy-huijiwiki/MediaWiki-Common.js)为例：
+2. 脚本会加载`http://localhost:5173/src/main.ts`，新项目需要视情况调整开发服务器的 host 和 port。
+3. 在新项目**所有**脚本运行前，检查`dev`的值，并决定启动开发版本还是正式版本。以[MediaWiki-Common.js](http://github.com/xyy-huijiwiki/MediaWiki-Common.js)为例：
 
    ```ts
    // 假设使用Vite，全部为默认设置的情况下，在文件 src/main.ts 中
 
    if (import.meta.env.PROD && dev === "MediaWiki-Common.js") {
      // 此处代码只在生产环境且发现`dev`值为`MediaWiki-Common.js`时执行
-     // 此时停止继续加载代码即可
+     // 此时停止继续加载代码即可，篡改猴会自动加载测试代码
      throw new Error("检测到dev环境，停止加载prod代码");
      // 虽然并不推荐throw new Error，但是这是最简单的方法
    }
