@@ -24,13 +24,3 @@ for (let index = 0; index < devList.length; index++) {
 }
 // inject dev to window
 unsafeWindow.dev = dev;
-if (dev) {
-  // wait for DOMContentLoaded and CHP
-  await new Promise((resolve) => {
-    document.addEventListener("DOMContentLoaded", resolve);
-  });
-  await unsafeWindow.CHP;
-  // load dev script
-  // @ts-ignore
-  import("http://localhost:5173/src/main.ts");
-}
